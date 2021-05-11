@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Tom Snyder <tom@3ddd.com>
  * @group             : 
- * @last modified on  : 2021-05-06
+ * @last modified on  : 2021-05-11
  * @last modified by  : Tom Snyder <tom@3ddd.com>
  * Modifications Log 
  * Ver   Date         Author                      Modification
@@ -24,7 +24,7 @@ global class WebHookListener {
         RestResponse resp = RestContext.response;
 		WebhookInboundEvent__mdt evtConfig;
 		LogService hookLog = new LogService('WebHookListener',req);
-		hookLog.startTimer();
+		//hookLog.startTimer();
 		try {
 	
 			//get the event 
@@ -67,7 +67,7 @@ global class WebHookListener {
 			RestContext.response.responseBody = Blob.valueOf(JSON.serializePretty(new ErrorResponse('INTERNAL_ERROR')));
 		}
 		finally {
-			if (evtConfig.Save_Logs__c || hookLog.severity=='ERROR') {
+			if (evtConfig==null || evtConfig.Save_Logs__c==true || hookLog.severity=='ERROR') {
 				hookLog.append(resp);
 				LogService.addLog(hookLog);
 				LogService.save();
@@ -82,7 +82,8 @@ global class WebHookListener {
 		if(Test.isRunningTest()) 
 			return  Webhook2FlowV2_Test.getWebhookConfig();
 		//get event
-		string eventName = req.requestURI.substring(req.requestURI.lastIndexOf('/')+1);
+		string uri = req.requestURI.removeEnd('/');
+		string eventName = uri.substring(uri.lastIndexOf('/')+1);
 		eventName = eventName.split('\\?')[0].split('&')[0];
 
 		WebhookInboundEvent__mdt evtConfig = WebhookInboundEvent__mdt.getInstance(eventName);

@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Tom Snyder <tom@3ddd.com>
  * @group             : 
- * @last modified on  : 2021-05-04
+ * @last modified on  : 2021-05-07
  * @last modified by  : Tom Snyder <tom@3ddd.com>
  * Modifications Log 
  * Ver   Date         Author                      Modification
@@ -71,10 +71,10 @@ global with sharing class WebHookProcessor {
     private static Boolean verifyDigestSignature(WebhookInboundEvent__mdt eventConfig, RestRequest req){
         Boolean validSignature = eventConfig.Host__c == req.headers.get('Host');
         
-        if (validSignature && eventConfig.Site_Name__c != null && eventConfig.Site_Name__c.trim().length() > 0){
+        if (validSignature && eventConfig.Site_Name__c!=null && eventConfig.Site_Name__c.trim().length()>0){
             try {
                 validSignature = (UserInfo.getUserId() == 
-                    [SELECT GuestUserId,UrlPathPrefix FROM Site where UrlPathPrefix = :eventConfig.Site_Name__c.trim() limit 1].GuestUserId);
+                    [SELECT Name,GuestUserId FROM Site where Name=:eventConfig.Site_Name__c.trim() limit 1].GuestUserId);
             } catch(Exception e) {
                 validSignature = Test.isRunningTest()? true : false;
             }

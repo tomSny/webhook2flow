@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Tom Snyder <tom@3ddd.com>
  * @group             : 
- * @last modified on  : 2021-05-04
+ * @last modified on  : 2021-05-07
  * @last modified by  : Tom Snyder <tom@3ddd.com>
  * Modifications Log 
  * Ver   Date         Author                      Modification
@@ -338,9 +338,10 @@ global inherited sharing class Webhook2FlowV2 {
         for (Schema.SObjectField f : fields.values() ) {
             DescribeFieldResult fdesc = f.getDescribe();
             //TODO: determine handling (describe always run in user context (could be Guest))
-            if (fdesc.isCreateable() || fdesc.isUpdateable() ) {  
+            // how should this be best handled?  should we open up access using permsets or just trust the flow.
+            //if (fdesc.isCreateable() || fdesc.isUpdateable() ) {  
                 targetFlds.put(fdesc.name.toLowerCase(),fdesc.name);
-            }
+            //}
         }
 		for (string k : untypedJson.keySet()) {
 			string targetField;

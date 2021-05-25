@@ -25,8 +25,11 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Webhook2Flow is the inverse of Salesforce External Services.  Using Webhook2flow, external Services integrate declaratively (no coding!) with your Salesforce instances to perform a variety of business actions or computations.  Webhook2Flow allows you to let Other systems integrate with your Salesforce services using existing or created webhooks in those External Systems/Services.
 =======
+=======
+>>>>>>> origin/LogService
 Webhook2Flow automates the creation and logic of webhook request receptors and services on Salesforce - almost completely in Flow Builder and without coding.
 
 Webhooks facilitate real-time integration of information and systems through a web (HTTP) request to another system when an event occurs.  For example, if a record is created. changed, delete, . . ., it triggers a event that uses a webhook to communicate that change to your Salesforce system.
@@ -64,7 +67,10 @@ Most modern systems have the inherent capability of extending their capabilities
 Most (if not all) state-of-the-art systems and services allow and utilize webhooks to automate transactions between applications, systems, and services and they are growing exponentially in popularity. .  A webhook can be a request for information or a request for an action.  Webhooks are increasingly available as extensions to system events and facilitate interaction with one or more external services when these events occur.
 
 In today&#39;s world, customers expect a seamless customer experience - no matter if that experience consists of behind the scenes business solutions and services that reside on a single platform or across multiple off-platform hosts. Webhook2Flow is the inverse of Salesforce External Services.  External Services smooth the way for this exchange by letting you declaratively (no coding!) integrate with externally hosted services that perform a variety of business actions or computations for use in your Salesforce org.  Webhook2Flow allows you to let Other systems integrate with your Salesforce services using existing or created webhooks.
+<<<<<<< HEAD
 >>>>>>> upstream/master
+=======
+>>>>>>> origin/LogService
 
 | **External Services** | **Webhook2Flow Services** |
 | --- | --- |
@@ -488,6 +494,7 @@ If you&#39;re looking for an ErrorId to return, you may want to look at those al
 - [Create a Connected App for Your Dev Hub Org](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_auth_connected_app.htm)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 - [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
 - [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
@@ -500,3 +507,7 @@ If you&#39;re looking for an ErrorId to return, you may want to look at those al
 - [Defining Connected Apps](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_defining_remote_access_applications.htm)
 - [Digging Deeper into OAuth 2.0 in Salesforce](https://help.salesforce.com/articleView?id=remoteaccess_authenticate_overview.htm&amp;type=5)
 >>>>>>> upstream/master
+=======
+- [Defining Connected Apps](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_defining_remote_access_applications.htm)
+- [Digging Deeper into OAuth 2.0 in Salesforce](https://help.salesforce.com/articleView?id=remoteaccess_authenticate_overview.htm&amp;type=5)
+>>>>>>> origin/LogService

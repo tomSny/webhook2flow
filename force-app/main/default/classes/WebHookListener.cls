@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Tom Snyder <tom@3ddd.com>
  * @group             : 
- * @last modified on  : 2021-05-11
+ * @last modified on  : 2021-05-25
  * @last modified by  : Tom Snyder <tom@3ddd.com>
  * Modifications Log 
  * Ver   Date         Author                      Modification
@@ -12,6 +12,10 @@
 
 @RestResource(urlMapping='/v1/WebHookListener/*')
 global class WebHookListener {
+
+    private static final Integer GOOD_RESPONSE_DEFAULT = 200 ; // Normal Good Response
+    private static final Integer BAD_RESPONSE_DEFAULT = 400 ; // Normal Bad Response
+    private static final String INVALID_EVENT = 'INVALID_EVENT' ; // Normal Bad Response
 
 	@HttpDelete global static void doDelete() 	{ doAll(); }
     @HttpGet global static void doGet() 		{ doAll(); }
@@ -43,7 +47,7 @@ global class WebHookListener {
 				resp = handler.execute(evtConfig, req);
 			} 
 			catch(Exception ex) {
-				system.debug('Error:'+ ex.getStackTraceString());
+//				system.debug('Error:'+ ex.getStackTraceString());
 				throw new WebHookListenerException('HANDLER_EXECUTION_EXCEPTION', ex);
 			}
 
@@ -55,7 +59,7 @@ global class WebHookListener {
 
 		}
 		catch(WebHookListenerException ex) {
-			system.debug('Error:'+ ex.getStackTraceString());
+//			system.debug('Error:'+ ex.getStackTraceString());
 			hookLog.append(ex);
 			setErrorResponse(ex.getMessageOverride());
 		}
@@ -79,16 +83,16 @@ global class WebHookListener {
 
 	private static WebhookInboundEvent__mdt getEventConfig(RestRequest req) {
 
-		if(Test.isRunningTest()) 
-			return  Webhook2FlowV2_Test.getWebhookConfig();
-		//get event
+//get event name 
 		string uri = req.requestURI.removeEnd('/');
 		string eventName = uri.substring(uri.lastIndexOf('/')+1);
 		eventName = eventName.split('\\?')[0].split('&')[0];
+//		system.debug('eventName: ' + eventName);
 
-		WebhookInboundEvent__mdt evtConfig = WebhookInboundEvent__mdt.getInstance(eventName);
+		WebhookInboundEvent__mdt evtConfig = Test.isRunningTest() ? Webhook2Flow_Test.getWebhookConfig(eventName) : WebhookInboundEvent__mdt.getInstance(eventName);
+//		system.debug('evtConfig:' + evtConfig);
 		if (evtConfig==null) {
-			throw new WebHookListenerException('INVALID_EVENT');
+			throw new WebHookListenerException(INVALID_EVENT);
 		}
 		return evtConfig;
 	}
@@ -103,6 +107,12 @@ global class WebHookListener {
 		global string getMessageOverride() {
 			switch on (this.getMessage()){  
 				when 'HANDLER_EXECUTION_EXCEPTION' { return Label.WH_HANDLER_EXECUTION_EXCEPTION; }
+				when 'INVALID_EVENT' {
+					RestContext.response.statusCode=GOOD_RESPONSE_DEFAULT;
+					RestContext.response.addHeader('Content-Type', 'application/json');
+					RestContext.response.responseBody = Blob.valueOf('');
+					return this.getMessage();
+				}
 				//set public message overrides here...  
 				when else { return this.getMessage(); }
 			}

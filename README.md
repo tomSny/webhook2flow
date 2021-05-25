@@ -80,7 +80,8 @@ Webhook2Flow facilitates exposing a service (as a RESTful Web Service using JSON
 
 The accessing webhook can use this same URL for every HTTP request type (e.g., DELETE, GET, PATCH, POST, PUSH).  The most commonly used is POST, but this supports them all.  For the taxonomy-oriented developers, you can have a single "category" for all of these (eg. [default\_flow\_APIName]).  If you support multiple request types for this function, this utility will automatically look for existing flows of the appended request type (e.g., default\_flow\_APIName\_delete, default\_flow\_APIName\_get, default\_flow\_APIName\_patch, . . .), or you could specify each type specifically through the URL with different names.
 
-## How Does This Work (The Basics)
+5.  Use Flow Builder to Service the request and build any needed
+    response.
 
 Here are the basic steps to create a webhook2flow webhook receptor/servicer on a Salesforce instance.
 
@@ -461,7 +462,8 @@ OK, if you are one of those extraordinarily rare developers who provides meaning
 
 #### Flow Error Example
 
-In this example, adding a record caused an error.  This error is returned in the body of the response.
+In this example, adding a record caused an error.  This error is
+returned in the body of the response.
 
 Steps:
 
@@ -479,7 +481,8 @@ Steps:
 
 If you&#39;re looking for an ErrorId to return, you may want to look at those already defined in your instance at: [https://[yourinstance].my.salesforce.com/services/wsdl/tooling](https://inspiration-power-78282-dev-ed.cs68.my.salesforce.com/services/wsdl/tooling) under \&lt;xsd:simpleType name="StatusCode"\&gt;.
 
-## References
+-   [Defining Connected
+    Apps](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_defining_remote_access_applications.htm)
 
 - [Enabling Webhooks to Launch Flows](https://quip.com/VoMrASkiH7PO/Enabling-Webhooks-to-Launch-Flows)
 - [Connected Apps](https://developer.salesforce.com/docs/atlas.en-us.securityImplGuide.meta/securityImplGuide/connected_apps.htm)
@@ -506,8 +509,11 @@ If you&#39;re looking for an ErrorId to return, you may want to look at those al
 =======
 - [Defining Connected Apps](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_defining_remote_access_applications.htm)
 - [Digging Deeper into OAuth 2.0 in Salesforce](https://help.salesforce.com/articleView?id=remoteaccess_authenticate_overview.htm&amp;type=5)
+<<<<<<< HEAD
 >>>>>>> upstream/master
 =======
 - [Defining Connected Apps](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_defining_remote_access_applications.htm)
 - [Digging Deeper into OAuth 2.0 in Salesforce](https://help.salesforce.com/articleView?id=remoteaccess_authenticate_overview.htm&amp;type=5)
 >>>>>>> origin/LogService
+=======
+>>>>>>> upstream/master

@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Tom Snyder <tom@3ddd.com>
  * @group             : 
- * @last modified on  : 2021-05-11
+ * @last modified on  : 2021-05-25
  * @last modified by  : Tom Snyder <tom@3ddd.com>
  * Modifications Log 
  * Ver   Date         Author                      Modification
@@ -81,7 +81,6 @@ global with sharing class WebHookProcessor {
                 validSignature = Test.isRunningTest()? true : false;
             }
         }
-        
         try {
             if (validSignature && eventConfig.Signing_Algorithm__c != null && eventConfig.Signing_Algorithm__c.trim().length() > 0 && eventConfig.Signing_Algorithm__c != 'None'){
                 String preHashHeader = '';

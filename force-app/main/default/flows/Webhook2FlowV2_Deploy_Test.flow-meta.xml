@@ -249,7 +249,7 @@
     </variables>
     <variables>
         <name>event</name>
-        <apexClass>slack_event</apexClass>
+        <apexClass>webhook2flow_apexclass_test</apexClass>
         <dataType>Apex</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
@@ -257,7 +257,7 @@
     </variables>
     <variables>
         <name>eventList</name>
-        <apexClass>slack_event</apexClass>
+        <apexClass>webhook2flow_apexclass_test</apexClass>
         <dataType>Apex</dataType>
         <isCollection>true</isCollection>
         <isInput>true</isInput>
